@@ -1,0 +1,11 @@
+apiVersion: v2
+name: three-tier-app
+description: Three-tier demo app (frontend, backend, postgres)
+type: application
+version: 0.1.0
+appVersion: "1.0"
+keywords:
+  - demo
+  - three-tier
+maintainers:
+  - name: Virima DevOps

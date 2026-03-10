@@ -1,0 +1,48 @@
+nameOverride: ""
+fullnameOverride: ""
+
+namespace: three-tier-demo
+
+# Frontend
+frontend:
+  replicaCount: 1
+  image:
+    repository: frontend
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    port: 80
+
+# Backend
+backend:
+  replicaCount: 1
+  image:
+    repository: backend
+    tag: latest
+    pullPolicy: IfNotPresent
+  service:
+    port: 5000
+
+# Database
+database:
+  enabled: true
+  replicaCount: 1
+  image:
+    repository: postgres
+    tag: "15-alpine"
+  auth:
+    username: appuser
+    password: apppass
+    database: appdb
+  persistence:
+    enabled: true
+    size: 1Gi
+
+# Ingress
+ingress:
+  enabled: true
+  className: nginx
+  host: three-tier.local
+  # tls:
+  #   - secretName: three-tier-tls
+  #     hosts: [three-tier.local]

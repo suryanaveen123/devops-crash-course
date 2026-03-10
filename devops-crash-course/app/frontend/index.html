@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Three-Tier Demo</title>
+  <style>
+    body { font-family: system-ui; max-width: 600px; margin: 2rem auto; padding: 0 1rem; }
+    h1 { color: #333; }
+    .status { padding: 0.5rem; border-radius: 4px; margin: 1rem 0; }
+    .ok { background: #d4edda; color: #155724; }
+    .err { background: #f8d7da; color: #721c24; }
+    pre { background: #f5f5f5; padding: 1rem; overflow-x: auto; }
+  </style>
+</head>
+<body>
+  <h1>Three-Tier Application</h1>
+  <p>Frontend (nginx) → Backend (API) → Database (Postgres)</p>
+  <div id="api-status">Loading API status…</div>
+  <div id="api-data"></div>
+  <script>
+    fetch('/api/health').then(r => r.json())
+      .then(d => {
+        document.getElementById('api-status').innerHTML =
+          '<div class="status ok">Backend: ' + (d.status || 'ok') + '</div>';
+        return fetch('/api/items');
+      })
+      .then(r => r.json())
+      .then(d => {
+        document.getElementById('api-data').innerHTML =
+          '<h2>Items from DB</h2><pre>' + JSON.stringify(d, null, 2) + '</pre>';
+      })
+      .catch(e => {
+        document.getElementById('api-status').innerHTML =
+          '<div class="status err">Backend error: ' + e.message + '</div>';
+      });
+  </script>
+</body>
+</html>

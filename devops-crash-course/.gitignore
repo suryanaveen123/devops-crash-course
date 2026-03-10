@@ -1,0 +1,11 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs and temp
+*.log
+*.tmp
+.cache/
+
+# Optional private notes (uncomment if you use notes/ for private content)
+# notes/

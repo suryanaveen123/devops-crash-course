@@ -1,0 +1,14 @@
+{{- if .Values.database.enabled }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-init
+  namespace: {{ .Values.namespace }}
+data:
+  init.sql: |
+    CREATE TABLE IF NOT EXISTS items (
+      id   SERIAL PRIMARY KEY,
+      name VARCHAR(255) NOT NULL
+    );
+    INSERT INTO items (name) VALUES ('Item One'), ('Item Two'), ('Item Three');
+{{- end }}
