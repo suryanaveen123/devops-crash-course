@@ -1,4 +1,4 @@
-# Virima DevOps Bootcamp — Teaching Schedule
+# DevOps Bootcamp — Teaching Schedule
 
 A day-by-day plan to run the 15-day crash course: what to teach, when to demo, and how to keep the class clear and engaging.
 
